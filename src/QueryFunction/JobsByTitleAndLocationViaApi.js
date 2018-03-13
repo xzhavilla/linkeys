@@ -2,7 +2,7 @@ const Rx = require('rxjs/Rx')
 const ObservableListIterator = require('../Iterator/ObservableListIterator')
 const IterableList = require('../Lists/IterableList')
 
-module.exports = class {
+module.exports = class JobsByTitleAndLocationViaApi {
   constructor (apiClient, path) {
     return (title, location) => {
       const getJobs = getJobsByTitleAndLocationViaApi(apiClient, path)(title, location)

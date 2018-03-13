@@ -1,6 +1,17 @@
 const Request = require('request')
 const {Observable} = require('rxjs')
 
+module.exports = class RequestHttpClient {
+  get (url, data, config) {
+    return request({
+      method: 'get',
+      url: url,
+      qs: data,
+      ...config
+    })
+  }
+}
+
 const request = Observable.bindNodeCallback(
   Request,
   (response, body) => {
@@ -18,9 +29,3 @@ const request = Observable.bindNodeCallback(
     return body
   }
 )
-
-module.exports = class {
-  constructor () {
-    return request
-  }
-}

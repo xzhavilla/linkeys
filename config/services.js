@@ -2,17 +2,17 @@ const Bottle = require('bottlejs')
 const Config = require('./parameters')
 const JobTermsByTitle = require('../src/Action/JobTermsByTitle')
 const LinkedInApiClient = require('../src/Http/LinkedInApiClient')
-const Request = require('../src/Http/Request')
+const RequestHttpClient = require('../src/Http/RequestHttpClient')
 const JobsByTitleAndLocationViaApi = require('../src/QueryFunction/JobsByTitleAndLocationViaApi')
 const JobCrawler = require('../src/Services/JobCrawler')
 const TermFrequencyCalculator = require('../src/Services/TermFrequencyCalculator')
 
 const bottle = new Bottle()
 
-bottle.service('http__request', Request)
+bottle.service('http__client__request', RequestHttpClient)
 
 bottle.factory('http__api__linkedin', container => (
-  new LinkedInApiClient(container.http__request, Config.api)
+  new LinkedInApiClient(container.http__client__request, Config.api)
 ))
 
 bottle.factory('query_function__jobs_by_title_and_location_via_api', container => (
