@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  node:
+    container_name: $COMPOSE_PROJECT_NAME-node
+    image: node
+    user: node
+    env_file:
+      - .env.$ENV
+    ports:
+      - $NODE_PORT:8080
+    volumes:
+      - ./..:/var/www
+    working_dir: /var/www
+    command: ./bin/yarn.sh start
+    restart: on-failure
+
+  mock:
+    container_name: $COMPOSE_PROJECT_NAME-mock
+    image: node
+    user: node
+    env_file:
+      - .env.$ENV
+    expose:
+      - 8080
+    volumes:
+      - ./..:/var/www
+    working_dir: /var/www
+    command: ./bin/yarn.sh mock
+    restart: on-failure
