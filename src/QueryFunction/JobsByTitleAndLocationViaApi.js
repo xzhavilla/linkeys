@@ -9,7 +9,12 @@ module.exports = class JobsByTitleAndLocationViaApi {
 
       return getJobs()
         .map(list => new ObservableListIterator(
-          list => getJobs(list.offset + list.length, list.length),
+          list => {
+            const offset = list.offset + list.length
+            const limit = offset < list.total ? list.length : 0
+
+            return getJobs(offset, limit)
+          },
           list
         ))
     }
