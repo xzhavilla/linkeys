@@ -10,12 +10,10 @@
   "author": "Alberto Villa <villa.alberto@gmail.com> (http://people.FreeBSD.org/~avilla)",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "body-parser": "^1.18.2",
     "bottlejs": "^1.7.0",
     "count-words-occurrence": "^1.0.0",
     "express": "^4.16.2",
     "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
     "rxjs": "^5.5.6",
     "user-agent-string-generator": "^0.0.2",
     "zlib": "^1.0.5"
