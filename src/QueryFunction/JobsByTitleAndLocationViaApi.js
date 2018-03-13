@@ -58,7 +58,7 @@ const getJobsByTitleAndLocationViaApi = (apiClient, path) =>
               company: item.jobPosting.companyName,
               location: item.formattedLocation,
               description: item.formattedDescription,
-              date: Math.round(+item.jobPosting.listDate / 1000)
+              date: Math.floor(+item.jobPosting.listDate / 1000)
             })),
             +paging.total,
             +paging.start
