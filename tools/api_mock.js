@@ -22,8 +22,8 @@ const getTotal = (title, location) => {
 
 const getString = () => Math.random().toString(36)
 
-Api.get('/' + Config.api.paths.jobs, ({title, location, ...req}, res) => {
-  const total = getTotal(title, location)
+Api.get('/' + Config.api.paths.jobs, (req, res) => {
+  const total = getTotal(req.query.keywords, req.query.location)
   const offset = req.query.start || 0
   const count = req.query.count || COUNT
 
