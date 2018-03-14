@@ -5,5 +5,6 @@ module.exports = class JobCrawler {
     return (title, location) => jobsByTitleAndLocation(title, location)
       .let(IterableObservable.from)
       .iterate()
+      .reduce((jobs, {value: list}) => jobs.concat(list.items), [])
   }
 }
