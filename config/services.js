@@ -1,6 +1,8 @@
 const Bottle = require('bottlejs')
 const Config = require('./parameters')
-const JobTermsByTitle = require('../src/Action/JobTermsByTitle')
+const JobsByTitle = require('../src/Controller/Action/JobsByTitle')
+const JobTermsByTitle = require('../src/Controller/Action/JobTermsByTitle')
+const ErrorHandler = require('../src/Controller/Middleware/ErrorHandler')
 const LinkedInApiClient = require('../src/Http/LinkedInApiClient')
 const RequestHttpClient = require('../src/Http/RequestHttpClient')
 const JobsByTitleAndLocationViaApi = require('../src/QueryFunction/JobsByTitleAndLocationViaApi')
@@ -23,6 +25,9 @@ bottle.service('job_crawler', JobCrawler, 'query_function__jobs_by_title_and_loc
 
 bottle.service('term_frequency_calculator', TermFrequencyCalculator)
 
+bottle.service('action__jobs_by_title', JobsByTitle, 'job_crawler')
 bottle.service('action__job_terms_by_title', JobTermsByTitle, 'job_crawler', 'term_frequency_calculator')
+
+bottle.service('middleware__error_handler', ErrorHandler)
 
 module.exports = bottle.container
