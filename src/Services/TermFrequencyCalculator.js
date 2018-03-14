@@ -9,12 +9,12 @@ module.exports = class TermFrequencyCalculator {
       )
 
       return Object.keys(freqs)
-        .map(toArray)
+        .map(toArray(freqs))
         .sort(byFreq)
         .reverse()
     }
   }
 }
 
-const toArray = (term, _, freqs) => ({term, freqs: freqs[term]})
+const toArray = freqs => term => ({term, freq: freqs[term]})
 const byFreq = ({freq: a}, {freq: b}) => a - b
