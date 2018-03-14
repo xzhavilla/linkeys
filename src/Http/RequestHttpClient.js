@@ -20,10 +20,7 @@ const request = Observable.bindNodeCallback(
     console[level](`${request.method.toUpperCase()} ${request.href}: ${response.statusCode} ${response.statusMessage}`)
 
     if (response.statusCode >= 300) {
-      const error = new Error(response.statusMessage)
-      error.code = response.statusCode
-
-      throw error
+      throw new Error(response.statusMessage)
     }
 
     return body
